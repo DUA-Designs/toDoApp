@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@1,600&family=Catamaran:wght@500&family=Nunito:wght@300&family=Roboto+Slab&display=swap');
+*{
+
+  font-family: 'Catamaran', sans-serif;
+   
+}
+#root{
+    background-color: #4158D0;
+background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+width: 100vw;
+height: 100vh;
+display: grid;
+align-items: center;
+ 
+}
+#taskSelectors button{
+    text-transform: uppercase;
+    border:none;
+    background: none;
+    font-size: 12px;
+}
+#taskSelectors button:hover{
+    background: rgb(229, 228, 228);
+}
+#tasks *{
+    cursor: pointer;
+}
+#tasks button{
+    font-size: 10px;
+   
+}
+#tasks label{
+    font-size: 15px;
+   
+}
+#welcome{
+    background: #D3959B;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #BFE6BA, #D3959B);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #BFE6BA, #D3959B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+#howTo{
+    
+
+}
+#bulb{
+    color:  blue ;
+  
+    
+
+}
+@media (max-Width:700px){
+    #taskSelectors button{
+        text-transform: uppercase;
+        border:none;
+        background: none;
+        font-size: 7px;
+    }
+    #tasks button{
+        font-size: 7px;
+    }
+    #tasks label{
+        font-size: 10px;
+       
+    }
+
+
+}
