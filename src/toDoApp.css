@@ -5,10 +5,8 @@
    
 }
 #root{
-    background-color: #4158D0;
-background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-width: 100vw;
-height: 100vh;
+  
+
 display: grid;
 align-items: center;
  
@@ -20,7 +18,7 @@ align-items: center;
     font-size: 12px;
 }
 #taskSelectors button:hover{
-    background: rgb(229, 228, 228);
+    background: rgb(93, 93, 183)
 }
 #tasks *{
     cursor: pointer;
@@ -37,7 +35,10 @@ align-items: center;
    
 
 }
-#theRow{
+#theRow{  background-color: #4158D0;
+    background-image: linear-gradient(45deg, #4158D0 10%, #C850C0 30%, #FFCC70 120%);
+    width: 100vw;
+height: 100vh;
   
 }
 #howTo{

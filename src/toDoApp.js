@@ -159,23 +159,23 @@ function undo(index){
 
 }
     return (
-       <div className="container shadow bg-body-tertiary   border rounded   ">
+       <div className="container-fluid shadow     border rounded   " id="theRow">
         
      
-        {tryNow? <div className="row  p-4 "  id="theRow" >
+        {tryNow? <div className="row  p-4 text-white"   >
         <h3 className=" text-center shadow border rounded col-lg-8 col-md-8 col-sm-10 col-xs-12 mx-auto p-3" id="welcome">Welcome to To Do List App</h3>
        
-        <div  className="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center my-2  grid align-items-center  " id="howTo">
+        <div  className="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center my-2  grid align-items-center  p-2" id="howTo">
           <div className="  p-5 shadow border rounded "><p>How to use?</p>
-        <i class="fa-solid fa-lightbulb   fs-1 p-2" id="bulb"></i>   </div>
+ <i class="fa-regular fa-lightbulb fs-1 p-2 text-info" id="bulb"></i>   </div>
         </div>
-             <div className="  col-lg-6 col-md-6 col-sm-6 col-xs-12 mx-auto   my-2 d-flex align-items-center">
-          <ul  className="  col-lg-10 col-md-10 col-sm-12 cols-xs-12 mx-auto  p-5  shadow border rounded  "> Here you can ...<li>Add new Tasks. </li>
+             <div className="  col-lg-6 col-md-6 col-sm-6 col-xs-12 mx-auto   my-2 d-flex align-items-center p-2">
+          <ul  className="  col-12    p-5  shadow border rounded d-block "> Here you can ...<li>Add new Tasks. </li>
             <li>Mark Them As Completed.</li>
             <li>You can delete the task or undo the marked ones.</li>
           </ul></div>
-          <blockquote  className="text-center   "> <div className="shadow border rounded position-relative p-3 mx-auto col-lg-6 col-md-6 col-sm-8 col-xs-12"><i class="fa-solid fa-bolt fs-4 text-warning   position-absolute top-0 start-50 translate-middle border rounded-circle shadow z-2 p-1 bg-body-tertiary"></i> Try this app to boost your productivity</div> </blockquote>
-          <button onClick={()=>setTryNow(!tryNow)} className="col-3 mx-auto btn btn-warning">Try Now</button>
+          <blockquote  className="text-center   "> <div className="shadow border rounded position-relative p-4 mx-auto col-lg-6 col-md-6 col-sm-8 col-xs-12"><i class="fa-solid fa-bolt fs-4 text-warning   position-absolute top-0 start-50 translate-middle border rounded-circle shadow z-2 p-1 bg-body-tertiary"></i> Try this app to boost your productivity</div> </blockquote>
+          <button onClick={()=>setTryNow(!tryNow)} className="col-3 mx-auto btn btn-info">Try Now</button>
          <p className="text-end  "><span className="border-bottom">Designed By - <em>Aravind</em></span></p>
           </div> :<  div className="p-4" id="app">
           
@@ -192,9 +192,9 @@ function undo(index){
         <div className="row p-3 " id="taskSelectors">
           <div className="col-12 ">
            
-  <button   class=" p-2 col-2"  id="btn-1" onClick={()=>setStatus([true,false,false])}>All</button>
-  <button class="   p-2 col-2" id="btn-2" onClick={()=>setStatus([false,true,false])}>Active</button>
-  <button   class=" p-2 col-2 " id="btn-3" onClick={()=>setStatus([false,false,true])}>Completed</button>
+  <button   className=" p-2 col-2  text-white"  id="btn-1" onClick={()=>setStatus([true,false,false])}>All</button>
+  <button className="   p-2 col-2 text-white" id="btn-2" onClick={()=>setStatus([false,true,false])}>Active</button>
+  <button   className=" p-2 col-2  text-white" id="btn-3" onClick={()=>setStatus([false,false,true])}>Completed</button>
  
           
           </div>
