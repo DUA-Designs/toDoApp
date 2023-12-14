@@ -163,7 +163,7 @@ function undo(index){
         
      
         {tryNow? <div className="row  p-4 text-white"   >
-        <h3 className=" text-center shadow border rounded col-lg-8 col-md-8 col-sm-10 col-xs-12 mx-auto p-3" id="welcome">Welcome to To Do List App</h3>
+        <h3 className=" text-center shadow border rounded col-lg-8 col-md-8 col-sm-10 col-xs-12 mx-auto p-3" id="welcome">Welcome to - To Do List App</h3>
        
         <div  className="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center my-2  grid align-items-center  p-2" id="howTo">
           <div className="  p-5 shadow border rounded "><p>How to use?</p>
@@ -174,9 +174,9 @@ function undo(index){
             <li>Mark Them As Completed.</li>
             <li>You can delete the task or undo the marked ones.</li>
           </ul></div>
-          <blockquote  className="text-center   "> <div className="shadow border rounded position-relative p-4 mx-auto col-lg-6 col-md-6 col-sm-8 col-xs-12"><i class="fa-solid fa-bolt fs-4 text-warning   position-absolute top-0 start-50 translate-middle border rounded-circle shadow z-2 p-1 bg-body-tertiary"></i> Try this app to boost your productivity</div> </blockquote>
-          <button onClick={()=>setTryNow(!tryNow)} className="col-3 mx-auto btn btn-info">Try Now</button>
-         <p className="text-end  "><span className="border-bottom">Designed By - <em>Aravind</em></span></p>
+          <blockquote  className="text-center   "> <div className="shadow border rounded position-relative p-4 mx-auto col-lg-6 col-md-6 col-sm-8 col-xs-12"><i class="fa-solid fa-bolt fs-4 text-warning   position-absolute top-0 start-50 translate-middle border rounded-circle shadow z-2 p-1  bg-light"></i> Try this app to boost your productivity</div> </blockquote>
+          <button onClick={()=>setTryNow(!tryNow)} className="col-lg-3 col-md-4 col-sm-6 col-xs-8 mx-auto btn btn-light my-3">Try Now</button>
+         <p className="text-end  " id="design"><span className="border-bottom">Designed By - <em>Aravind</em></span></p>
           </div> :<  div className="p-1 py-2" id="app">
           
 

@@ -60,6 +60,9 @@
     
 
 }
+#design{
+    font-size: 10px;
+}
 @media (max-Width:700px){
     #taskSelectors button{
         
