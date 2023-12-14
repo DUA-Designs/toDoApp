@@ -5,10 +5,15 @@
    
 }
 #root{
+    width: 100vw;
+    height: fit-content;
+    display: grid;
+    align-items: center;
+    background-color: #4158D0;
+    background-image: linear-gradient(45deg, #4158D0 10%, #C850C0 30%, #FFCC70 120%);
   
 
-display: grid;
-align-items: center;
+ 
  
 }
 #taskSelectors button{
@@ -35,10 +40,8 @@ align-items: center;
    
 
 }
-#theRow{  background-color: #4158D0;
-    background-image: linear-gradient(45deg, #4158D0 10%, #C850C0 30%, #FFCC70 120%);
-    width: 100vw;
-height: 100vh;
+#theContainer{  
+   
   
 }
 #howTo{
@@ -46,8 +49,9 @@ height: 100vh;
 
 }
 #app{
-    height: 80vh;
+    height: 100vh;
     overflow-y: scroll;
+    overflow-x: hidden;
     
 }
 #bulb{
@@ -58,9 +62,7 @@ height: 100vh;
 }
 @media (max-Width:700px){
     #taskSelectors button{
-        text-transform: uppercase;
-        border:none;
-        background: none;
+        
         font-size: 7px;
     }
     #tasks button{
@@ -70,6 +72,12 @@ height: 100vh;
         font-size: 10px;
        
     }
+    #add{
+        font-size: 10px;
+    }
+#newTask{
+    font-size: 14px;
 
+}
 
 }

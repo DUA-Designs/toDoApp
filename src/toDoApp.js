@@ -159,7 +159,7 @@ function undo(index){
 
 }
     return (
-       <div className="container-fluid shadow     border rounded   " id="theRow">
+       <div className="container-fluid   " id="theContainer">
         
      
         {tryNow? <div className="row  p-4 text-white"   >
@@ -177,24 +177,24 @@ function undo(index){
           <blockquote  className="text-center   "> <div className="shadow border rounded position-relative p-4 mx-auto col-lg-6 col-md-6 col-sm-8 col-xs-12"><i class="fa-solid fa-bolt fs-4 text-warning   position-absolute top-0 start-50 translate-middle border rounded-circle shadow z-2 p-1 bg-body-tertiary"></i> Try this app to boost your productivity</div> </blockquote>
           <button onClick={()=>setTryNow(!tryNow)} className="col-3 mx-auto btn btn-info">Try Now</button>
          <p className="text-end  "><span className="border-bottom">Designed By - <em>Aravind</em></span></p>
-          </div> :<  div className="p-4" id="app">
+          </div> :<  div className="p-1 py-2" id="app">
           
 
         
        
-        <div className="row p-1 ">
+        <div className="row p-1 py-5">
           <div className="col-12 d-flex justify-content-between">
-          <input type="text" placeholder="New Task..." className="border border-0 w-75" id="newTask"/><button className="btn btn-primary" onClick={newTask}>Add</button>
+          <input type="text" placeholder="New Task..." className="border border-0 w-75" id="newTask"/><button className="btn btn-primary" onClick={newTask} id="add">Add</button>
           </div>
          
         </div>
        
         <div className="row p-3 " id="taskSelectors">
-          <div className="col-12 ">
+          <div className="col-12  ">
            
-  <button   className=" p-2 col-2  text-white"  id="btn-1" onClick={()=>setStatus([true,false,false])}>All</button>
-  <button className="   p-2 col-2 text-white" id="btn-2" onClick={()=>setStatus([false,true,false])}>Active</button>
-  <button   className=" p-2 col-2  text-white" id="btn-3" onClick={()=>setStatus([false,false,true])}>Completed</button>
+  <button   className=" p-2 col-lg-2 col-4    text-white"  id="btn-1" onClick={()=>setStatus([true,false,false])}>All</button>
+  <button className="   p-2 col-lg-2 col-4  text-white" id="btn-2" onClick={()=>setStatus([false,true,false])}>Active</button>
+  <button   className=" p-2  col-lg-2 col-4   text-white" id="btn-3" onClick={()=>setStatus([false,false,true])}>Completed</button>
  
           
           </div>
@@ -202,9 +202,9 @@ function undo(index){
           <div className="row p-1 my-3 " id="tasks">
           {
             status[0]?all.map((item,index)=><div className="col-12    my-1  ">
-            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-around">          <label className="col-9 p-2">{check[index]?<del>{`${item}`}</del>:`${item}`}</label>  <button className="btn btn-danger col-1" onClick={()=>remove(index)}>Delete</button></div></div>):status[1]?active.map((item,index)=><div className="col-12    my-1 mx-auto ">
-            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-around">          <input type="checkbox"  className="col-1  " id={`makeCompletedByActive${index}`}  onClick={()=>makeCompletedByActive(index)}  /> <label className="col-10 p-2">{item}</label>  </div></div>):completed.map((item,index)=><div className="col-12    my-1 mx-auto">
-            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-around">           <label className="col-10 p-2"><del>{item}</del></label> <button className="btn btn-secondary col-1" onClick={()=>undo(index)}>Undo</button> </div></div>)
+            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-between">          <label className="col-lg-9 col-md-8 col-sm-8 col-xs-8 p-2">{check[index]?<del>{`${item}`}</del>:`${item}`}</label>  <button className="btn btn-danger col-lg-1 col-md-2 col-sm-3 col-xs-4" onClick={()=>remove(index)}>Delete</button></div></div>):status[1]?active.map((item,index)=><div className="col-12    my-1 mx-auto ">
+            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-between">          <input type="checkbox"  className="col-1  " id={`makeCompletedByActive${index}`}  onClick={()=>makeCompletedByActive(index)}  /> <label className="col-10 p-2">{item}</label>  </div></div>):completed.map((item,index)=><div className="col-12    my-1 mx-auto">
+            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-between">           <label className="col-lg-9 col-md-8 col-sm-8 col-xs-8 p-2"><del>{item}</del></label> <button className="btn btn-secondary  col-lg-1 col-md-2 col-sm-3 col-xs-4" onClick={()=>undo(index)}>Undo</button> </div></div>)
           }
          
         </div> </div>}
