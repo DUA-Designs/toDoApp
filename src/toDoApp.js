@@ -169,11 +169,11 @@ function undo(index){
           <div className="  p-5 shadow border rounded "><p>How to use?</p>
  <i class="fa-regular fa-lightbulb fs-1 p-2 text-info" id="bulb"></i>   </div>
         </div>
-             <div className="  col-lg-6 col-md-6 col-sm-6 col-xs-12 mx-auto   my-2 d-flex align-items-center p-2">
-          <ul  className="  col-12    p-5  shadow border rounded d-block "> Here you can ...<li>Add new Tasks. </li>
-            <li>Mark Them As Completed.</li>
-            <li>You can delete the task or undo the marked ones.</li>
-          </ul></div>
+             <div className="  col-lg-6 col-md-6 col-sm-6 col-xs-12 mx-auto   my-2 d-flex align-items-center p-2"><div className=" shadow border rounded col-12 py-4">
+          <ul  className="  col-12    py-3   "> Here you can ...<li>Add new tasks </li>
+            <li>Mark them as completed</li>
+            <li>You can delete the task or undo the marked ones</li>
+          </ul></div></div>
           <blockquote  className="text-center   "> <div className="shadow border rounded position-relative p-4 mx-auto col-lg-6 col-md-6 col-sm-8 col-xs-12"><i class="fa-solid fa-bolt fs-4 text-warning   position-absolute top-0 start-50 translate-middle border rounded-circle shadow z-2 p-1  bg-light"></i> Try this app to boost your productivity</div> </blockquote>
           <button onClick={()=>setTryNow(!tryNow)} className="col-lg-3 col-md-4 col-sm-6 col-xs-8 mx-auto btn btn-light my-3">Try Now</button>
          <p className="text-end  " id="design"><span className="border-bottom">Designed By - <em>Aravind</em></span></p>
