@@ -22,6 +22,7 @@ export function App(){
               
                 btn1.style.borderBottom = "2px solid blue";
                
+               
 
              }
             
@@ -32,6 +33,7 @@ export function App(){
              }
              if(status[1]){
                  btn2.style.borderBottom="2px solid blue";
+                
                 
              }
              else{
@@ -46,15 +48,7 @@ export function App(){
                 btn3.style.border="none";
                 
              }
-             for(let i in completed){
-       
-              if(all.indexOf(completed[i])>=0  && status[0]){
-                let changeInState=document.getElementById(`makeCompletedByAll${i}`);
-               
-                        changeInState.checked=true;
-               
-              }
-            }
+          
       }
 
 
@@ -100,52 +94,33 @@ function remove(index){
 
 
 }
-function makeCompletedByAll(index){
-  let checkedByAll= document.getElementById(`makeCompletedByAll${index}`).checked;
  
-  if(checkedByAll){
-    if(completed.indexOf(all[index])<0){
-      setCompleted([...completed,all[index]]);
-      let duplicateCheck=check;
-     
-    
-      duplicateCheck[index]=!duplicateCheck[index];
-      setCheck([...duplicateCheck]);
- 
-      if(active.indexOf(all[index])>=0){
-        let duplicateActive=active;
-    duplicateActive.splice(active.indexOf(all[index]),1);
-    setActive([...duplicateActive]);
-      }
-      
-       
-    }
-  }
-  else{
-    if(completed.indexOf(all[index])>=0){
-    let arr=completed;
-    arr.splice(completed.indexOf(all[index]),1);
-    setCompleted([...arr]);
-    }
-  }
-}
 function makeCompletedByActive(index){
         
-  let checkedByActive= document.getElementById("makeCompletedByActive").checked;
+  let checkedByActive= document.getElementById(`makeCompletedByActive${index}`).checked;
   console.log(checkedByActive);
  
 
   if(checkedByActive){
     if(completed.indexOf(active[index])<0){
+
+      setTimeout(()=>{
       setCompleted([...completed,active[index]]);
+      let duplicateCheck=check;
+      duplicateCheck[all.indexOf(active[index])]=true;
+      setCheck([...duplicateCheck]);
       let duplicateActive=active;
       duplicateActive.splice(index,1);
       setActive([...duplicateActive]);
-      let duplicateCheck=check;
+
+      for(let i in active){
+        document.getElementById(`makeCompletedByActive${i}`).checked=false;
+      }
+      },600);
+   
      
     
-      duplicateCheck[index]=!duplicateCheck[all.indexOf(active[index])];
-      setCheck([...duplicateCheck]);
+    
        
        
 
@@ -157,13 +132,23 @@ function makeCompletedByActive(index){
     arr.splice(completed.indexOf(active[index]),1);
     setCompleted([...arr]);
     }
+    let duplicateCheck=check;
+     
+    
+      duplicateCheck[all.indexOf(active[index])]=false;
+      setCheck([...duplicateCheck]);
   }
+   
+  
+
+   
+  
 
 }
 function undo(index){
 
    let duplicateCheck=check;
-   check[all.indexOf(completed[index])]=!check[all.indexOf(completed[index])];
+   duplicateCheck[all.indexOf(completed[index])]=false;
    setCheck([...duplicateCheck]);
   setActive([...active,completed[index]]);
   let duplicateCompleted=completed;
@@ -174,23 +159,25 @@ function undo(index){
 
 }
     return (
-       <div className="container shadow bg-body-tertiary p-5 border rounded   ">
+       <div className="container shadow bg-body-tertiary   border rounded   ">
         
      
-        {tryNow? <div className="row  "  >
+        {tryNow? <div className="row  p-4 "  id="theRow" >
         <h3 className=" text-center shadow border rounded col-lg-8 col-md-8 col-sm-10 col-xs-12 mx-auto p-3" id="welcome">Welcome to To Do List App</h3>
        
-        <div  className="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center my-2" id="howTo"><span className="p-2 shadow border rounded d-block">How to use?<br/>
-        <i class="fa-solid fa-lightbulb text-red fs-1 p-5" id="bulb"></i></span> </div>
-             <div className="  col-lg-6 col-md-6 col-sm-6 col-xs-12 mx-auto shadow border rounded my-2">
-          <ul  className="p-2  col-10 mx-auto"> Here you can ...<li>Add new Tasks. </li>
+        <div  className="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center my-2  grid align-items-center  " id="howTo">
+          <div className="  p-5 shadow border rounded "><p>How to use?</p>
+        <i class="fa-solid fa-lightbulb   fs-1 p-2" id="bulb"></i>   </div>
+        </div>
+             <div className="  col-lg-6 col-md-6 col-sm-6 col-xs-12 mx-auto   my-2 d-flex align-items-center">
+          <ul  className="  col-lg-10 col-md-10 col-sm-12 cols-xs-12 mx-auto  p-5  shadow border rounded  "> Here you can ...<li>Add new Tasks. </li>
             <li>Mark Them As Completed.</li>
             <li>You can delete the task or undo the marked ones.</li>
           </ul></div>
-          <blockquote  className="text-center">Try this app to boost your productivity.</blockquote>
-          <button onClick={()=>setTryNow(!tryNow)} className="col-3 mx-auto btn btn-primary">Try Now</button>
-         
-          </div> :<>
+          <blockquote  className="text-center   "> <div className="shadow border rounded position-relative p-3 mx-auto col-lg-6 col-md-6 col-sm-8 col-xs-12"><i class="fa-solid fa-bolt fs-4 text-warning   position-absolute top-0 start-50 translate-middle border rounded-circle shadow z-2 p-1 bg-body-tertiary"></i> Try this app to boost your productivity</div> </blockquote>
+          <button onClick={()=>setTryNow(!tryNow)} className="col-3 mx-auto btn btn-warning">Try Now</button>
+         <p className="text-end  "><span className="border-bottom">Designed By - <em>Aravind</em></span></p>
+          </div> :<  div className="p-4" id="app">
           
 
         
@@ -215,12 +202,12 @@ function undo(index){
           <div className="row p-1 my-3 " id="tasks">
           {
             status[0]?all.map((item,index)=><div className="col-12    my-1  ">
-            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-around">          <input type="checkbox"  className="col-1  " id={`makeCompletedByAll${index}`}   onClick={()=>makeCompletedByAll(index)} /> <label className="col-9 p-2">{check[index]?<del>{`${item}`}</del>:`${item}`}</label>  <button className="btn btn-danger col-1" onClick={()=>remove(index)}>Delete</button></div></div>):status[1]?active.map((item,index)=><div className="col-12    my-1 mx-auto ">
-            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-around">          <input type="checkbox"  className="col-1  " id={`makeCompletedByActive`}  onClick={()=>makeCompletedByActive(index)}  /> <label className="col-10 p-2">{item}</label>  </div></div>):completed.map((item,index)=><div className="col-12    my-1 mx-auto">
+            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-around">          <label className="col-9 p-2">{check[index]?<del>{`${item}`}</del>:`${item}`}</label>  <button className="btn btn-danger col-1" onClick={()=>remove(index)}>Delete</button></div></div>):status[1]?active.map((item,index)=><div className="col-12    my-1 mx-auto ">
+            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-around">          <input type="checkbox"  className="col-1  " id={`makeCompletedByActive${index}`}  onClick={()=>makeCompletedByActive(index)}  /> <label className="col-10 p-2">{item}</label>  </div></div>):completed.map((item,index)=><div className="col-12    my-1 mx-auto">
             <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-around">           <label className="col-10 p-2"><del>{item}</del></label> <button className="btn btn-secondary col-1" onClick={()=>undo(index)}>Undo</button> </div></div>)
           }
          
-        </div> </>}
+        </div> </div>}
          
      
 
