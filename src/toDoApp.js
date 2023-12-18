@@ -2,12 +2,16 @@ import React from "react";
 import { useState,useEffect } from "react";
 
 
+
+
+
+
 export function App(){
-    const [all,setAll]=useState([]);
+    const [all,setAll]=useState(localStorage.getItem("all")?JSON.parse(localStorage.getItem("all")):[] );
     const [status,setStatus]=useState([true,false,false]);
-    const [active,setActive]=useState([]);
+    const [active,setActive]=useState(localStorage.getItem("active")?JSON.parse(localStorage.getItem("active")):[] );
     const [completed,setCompleted]=useState([]);
-    const [check,setCheck]=useState([]);
+    const [check,setCheck]=useState(localStorage.getItem("check")?JSON.parse(localStorage.getItem("check")):[] );
      
     const[tryNow,setTryNow]=useState(true);
 
@@ -61,12 +65,15 @@ export function App(){
            
     });
     function newTask(){
-        let add=document.getElementById("newTask") ;
+        let add=document.getElementById("newTask");
       if(add.value.trim()!=="" && all.indexOf(add.value)<0){
         
         setAll([...all,add.value]);
         setActive([...active,add.value]);
         setCheck([...check,false]);
+        localStorage.setItem("all",JSON.stringify([...all,add.value]));
+         localStorage.setItem("active",JSON.stringify([...active,add.value]));
+         localStorage.setItem("check",JSON.stringify([...check,false]));
        
       }
       add.value="";
@@ -90,6 +97,10 @@ function remove(index){
   let duplicateCheck=check;
   duplicateCheck.splice(index,1);
   setCheck([...duplicateCheck]);
+
+  localStorage.setItem("all",JSON.stringify([...all]));
+         localStorage.setItem("active",JSON.stringify([...active]));
+         localStorage.setItem("check",JSON.stringify([...check]));
   
 
 
@@ -177,14 +188,21 @@ function undo(index){
           <blockquote  className="text-center   "> <div className="shadow border rounded position-relative p-4 mx-auto col-lg-6 col-md-6 col-sm-8 col-xs-12"><i class="fa-solid fa-bolt fs-4 text-warning   position-absolute top-0 start-50 translate-middle border rounded-circle shadow z-2 p-1  bg-light"></i> Try this app to boost your productivity</div> </blockquote>
           <button onClick={()=>setTryNow(!tryNow)} className="col-lg-3 col-md-4 col-sm-6 col-xs-8 mx-auto btn btn-light my-3">Try Now</button>
          <p className="text-end  " id="design"><span className="border-bottom">Designed By - <em>Aravind</em></span></p>
-          </div> :<  div className="p-1 py-2" id="app">
+          </div> :
+          
+          <  div className="p-1 py-2" id="app">
+            <div className="row  p-1 ">
+            <div className="btn text-start  bg-light  col-lg-2 col-md-3 col-sm-3  mx-2" onClick={()=>setTryNow(true)} id="backToIns"><i class="fa-solid fa-arrow-left"></i> Back to Instructions.</div>
+            </div>
           
 
         
-       
-        <div className="row p-1 py-5">
+         
+        <div className="row p-1 py-3">
+        
           <div className="col-12 d-flex justify-content-between">
-          <input type="text" placeholder="New Task..." className="border border-0 w-75" id="newTask"/><button className="btn btn-primary" onClick={newTask} id="add">Add</button>
+            
+          <input type="text" placeholder="New Task..." className="border border-0 w-75 rounded" id="newTask"/><button className="btn btn-primary" onClick={newTask} id="add">Add</button>
           </div>
          
         </div>
@@ -202,12 +220,14 @@ function undo(index){
           <div className="row p-1 my-3 " id="tasks">
           {
             status[0]?all.map((item,index)=><div className="col-12    my-1  ">
-            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-between">          <label className="col-lg-9 col-md-8 col-sm-8 col-xs-8 p-2">{check[index]?<del>{`${item}`}</del>:`${item}`}</label>  <button className="btn btn-danger col-lg-1 col-md-2 col-sm-3 col-xs-4" onClick={()=>remove(index)}>Delete</button></div></div>):status[1]?active.map((item,index)=><div className="col-12    my-1 mx-auto ">
-            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-between">          <input type="checkbox"  className="col-1  " id={`makeCompletedByActive${index}`}  onClick={()=>makeCompletedByActive(index)}  /> <label className="col-10 p-2">{item}</label>  </div></div>):completed.map((item,index)=><div className="col-12    my-1 mx-auto">
-            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-between">           <label className="col-lg-9 col-md-8 col-sm-8 col-xs-8 p-2"><del>{item}</del></label> <button className="btn btn-secondary  col-lg-1 col-md-2 col-sm-3 col-xs-4" onClick={()=>undo(index)}>Undo</button> </div></div>)
+            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-between border rounded">          <label className="col-lg-9 col-md-8 col-sm-8 col-xs-8 p-2">{check[index]?<del>{`${item}`}</del>:`${item}`}</label>  <button className="btn btn-danger col-lg-1 col-md-2 col-sm-3 col-xs-4" onClick={()=>remove(index)}>Delete</button></div></div>):status[1]?active.map((item,index)=><div className="col-12    my-1 mx-auto ">
+            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-between border rounded">          <input type="checkbox"  className="col-1  " id={`makeCompletedByActive${index}`}  onClick={()=>makeCompletedByActive(index)}  /> <label className="col-10 p-2">{item}</label>  </div></div>):completed.map((item,index)=><div className="col-12    my-1 mx-auto">
+            <div className="col-12 p-1 shadow bg-body-tertiary d-flex align-items-center justify-content-between border rounded">           <label className="col-lg-9 col-md-8 col-sm-8 col-xs-8 p-2"><del>{item}</del></label> <button className="btn btn-secondary  col-lg-1 col-md-2 col-sm-3 col-xs-4" onClick={()=>undo(index)}>Undo</button> </div></div>)
           }
          
-        </div> </div>}
+         
+        </div> 
+        </div>}
          
      
 
